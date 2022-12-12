@@ -1,0 +1,78 @@
+brew update
+brew upgrade
+brew install php
+brew install mysql
+brew services start mysql
+brew services stop mysql
+--
+brew list
+brew outdated
+--
+brew installs packages in
+brew /usr/local/Cellar
+--
+mysql -uroot -p
+brew services stop mysql
+pkill mysqld
+rm -rf /usr/local/var/mysql/
+brew postinstall mysql
+--
+brew services restart mysql
+--
+brew remove node
+--
+brew uninstall --force node
+--
+rm /usr/local/bin/composer
+brew cleanup
+brew doctor
+brew install composer
+--
+pwd
+--
+//go to the projectdirectory
+composer create-project --prefer-dist laravel/laravel blog
+--
+//install laravel globally
+composer global require laravel/installer
+
+//set path environment variable for global commands
+sudo nano /etc/paths
+//paste below in the editor at bottom
+
+/Users/lovedeepsingh/.composer/vendor/bin
+then do ctrl+x , then yes
+--
+php artisan serve
+--
+composer global require laravel/valet
+valet/install
+---
+sudo lsof -i ':80'
+sudo netstat -an | grep LISTEN
+tail -5 /var/log/httpd/error_log
+which -a httpd
+whereis httpd
+--
+phpmyadmin in mac --> https://gist.github.com/kitloong/5f66a140f38b9698e8c3ed13b968ff47
+---
+php artisan make:migration create_posts_table --create="posts"
+php artisan migrate
+php artisan migrate:rollback
+---
+php artisan make:migration create_posts_table --create="posts"
+---
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+---
+php artisan r:l  //shows all routes
+---
+php artisan make:model Homeslide -m   //creates model and database migration
+//update database file (in databases->migrations)
+//update model
+//then run below
+php artisan migrate
+---
+php artisan make:controller Home/HomeSlideController
+--
