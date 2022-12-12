@@ -67,3 +67,12 @@ npm install && npm run dev
 php artisan migrate
 ---
 php artisan r:l  //shows all routes
+---
+php artisan make:model Homeslide -m   //creates model and database migration
+//update database file (in databases->migrations)
+//update model
+//then run below
+php artisan migrate
+---
+php artisan make:controller Home/HomeSlideController
+--
