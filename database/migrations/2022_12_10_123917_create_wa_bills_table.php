@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('wa_bills', function (Blueprint $table) {
             $table->id();
+            $table->date('move_in_date');
             $table->string('address_1');
             $table->string('address_2')->nullable();
             $table->string('city');

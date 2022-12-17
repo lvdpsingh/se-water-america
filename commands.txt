@@ -47,6 +47,7 @@ php artisan serve
 --
 composer global require laravel/valet
 valet/install
+//optional: valet domain test
 ---
 sudo lsof -i ':80'
 sudo netstat -an | grep LISTEN
