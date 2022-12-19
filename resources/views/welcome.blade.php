@@ -37,9 +37,9 @@
             @endif
 
             <div>
-                <b style="font-size:500%; color:white;">Welcome to Water America!</b>
+                <b style="font-size:500%; color:#01B6DF;">Welcome to Water America!</b>
                 <br>
-                <t style="font-size:200%; color:white;">Please log in or register to begin</t>
+                <t style="font-size:200%; color:#01B6DF;">Please log in or register to begin</t>
             </div>
             
         </div>
