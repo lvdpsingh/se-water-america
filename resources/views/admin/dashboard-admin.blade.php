@@ -14,20 +14,20 @@
                     <!--admin-card-view-->
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Move-In Date</th>
-                                <th scope="col">Address Line 1</th>
-                                <th scope="col">Address Line 2</th>
-                                <th scope="col">City</th>
-                                <th scope="col">State</th>
-                                <th scope="col">Country</th>
-                                <th scope="col">ZipCode</th>
-                                <th scope="col">CustomerID</th>
-                            </tr>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Move-In Date</th>
+                            <th scope="col">Address Line 1</th>
+                            <th scope="col">Address Line 2</th>
+                            <th scope="col">City</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">ZipCode</th>
+                            <th scope="col">CustomerID</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach($service_requests as $sr)
+                        @foreach($service_requests as $sr)
                             <tr>
                                 <td>{{ $sr->id }}</td>
                                 <td>{{ $sr->move_in_date }}</td>
@@ -39,7 +39,7 @@
                                 <td>{{ $sr->zipcode }}</td>
                                 <td>{{ $sr->customerID }}</td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
 

@@ -20,10 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $service_requests = wa_bill::all();
-    return view('dashboard', compact('service_requests'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    $service_requests = wa_bill::all();
+//    return view('dashboard', compact('service_requests'));
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,4 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/newservice/success',[ServiceController::class,'viewServiceSubmitted'])->name('newservice.success');
     Route::post('/newservice/create',[ServiceController::class, 'newServiceRequest'])->name('newservice.create');
 });
+
+Route::prefix('admin')->middleware(['auth','admin'])->group(function (){
+    Route::get('dashboard-admin','App\Http\Controllers\Admin\DashboardController@index')->name('dashboard-admin');
+});
+
+Route::prefix('customer')->middleware(['auth','customer'])->group(function (){
+    Route::get('dashboard-customer','App\Http\Controllers\Customer\DashboardController@index')->name('dashboard-customer');
+});
+
 require __DIR__.'/auth.php';
