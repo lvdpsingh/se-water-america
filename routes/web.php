@@ -17,7 +17,7 @@ use App\Models\wa_bill;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.home-master-1');
 });
 
 //Route::get('/dashboard', function () {
@@ -35,8 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/newservice/create',[ServiceController::class, 'newServiceRequest'])->name('newservice.create');
 });
 
+
 Route::prefix('admin')->middleware(['auth','admin'])->group(function (){
     Route::get('dashboard-admin','App\Http\Controllers\Admin\DashboardController@index')->name('dashboard-admin');
+    Route::get('/service/edit/{id}','App\Http\Controllers\Admin\DashboardController@editServiceRequest')->name('service-edit-admin');
+    Route::post('/service/update/{id}','App\Http\Controllers\Admin\DashboardController@updateServiceRequest')->name('service-update-admin');
+    Route::get('/service/delete/{id}','App\Http\Controllers\Admin\DashboardController@deleteServiceRequest')->name('service-delete-admin');
 });
 
 Route::prefix('customer')->middleware(['auth','customer'])->group(function (){
