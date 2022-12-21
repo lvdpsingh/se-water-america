@@ -47,6 +47,7 @@ php artisan serve
 --
 composer global require laravel/valet
 valet/install
+//optional: valet domain test
 ---
 sudo lsof -i ':80'
 sudo netstat -an | grep LISTEN
@@ -75,4 +76,143 @@ php artisan make:model Homeslide -m   //creates model and database migration
 php artisan migrate
 ---
 php artisan make:controller Home/HomeSlideController
+-------
+Query builder
+$data = array();
+$data['category_name'] = $request->category_name;
+$data['user_id'] = Auth::user->id;
+DB::table('categories_table')->insert($data);
+
+//insert facade also in controller
+---
+
+-------
+------*****-----START-----*****---
+Separating Admin View and User View:
+1. Visual Layouts - Blade
+2. Controller -> Routes to that controller
+3. Default redirect after login : AuthLoginController ==> do the redirect
+4. Additional Middleware to protect admin area
+---
+php artisan make:Model Role -m
+Models -> update User and Role relationships
+
+php artisan make:seed UsersTableSeeder
+php artisan make:seed RolesTableSeeder
+
+//Migrate the tables
+
+//insert the seed data into the db
+php artisan db:seed
+
+//checking relationships and records
+php artisan tinker
+    App\User::find(1);
+    App\User::find(2);
+    App\Role::find(1);
+    App\User::find(1)->role;
+    App\Role::find(1)->users;
+
+//create controllers
+php artisan make:controller Admin/ServiceController
+php artisan make:controller Customer/ServiceController
+
+//create middleware
+php artisan make:middleware AdminMiddleware
+php artisan make:middleware CustomerMiddleware
+
+//register in Kernel.php (in $routeMiddleware)
 --
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CustomerMiddleware;
+
+'admin' => AdminMiddleware::class,
+'customer' => CustomerMiddleware::class
+--
+
+//create Routes (web.php)
+--
+Route::group(['as' => 'admin.','prefix'=>'admin','namespace'=>'Admin', 'middleware'=>['auth','admin']],
+            function(){
+            Route::get('dashboard','DashboardController@index')->name('dashboard');
+        });
+
+Route::group(['as'=>'customer.','prefix'=>'customer','namespace'=>'Customer', 'middleware'=>['auth','customer']],
+            function(){
+            Route::get('dashboard','DashboardController@index')->name('dashboard');
+        });
+--
+//create two folders in view - admin, customer - (add the below lines to two files)
+dashboard.blade.php --> You are logged in as {{ Auth::user()->name}}
+
+//update DashboardController - update both controllers
+public function index(){
+    return view('admin.dashboard');
+}
+
+public function index(){
+    return view('customer.dashboard');
+}
+--
+--
+//update Middlewares- AdminMiddleware     //in function handle
+use Illuminate\Support\Facades\Auth;
+
+if(Auth::check() && Auth::user()->role->id == 1){
+    return $next($request);
+}else{
+    return redirect()->route('login')
+}
+
+//CustomerMiddleware
+if(Auth::check() && Auth::user()->role->id == 2){
+    return $next($request);
+}else{
+    return redirect()->route('login')
+}
+--
+//Update RedirectIfAuthenticated.php
+if (Auth::guard($guard)->check() && Auth::user()->role->id==1) {
+    return redirect()->route('admin.dashboard');
+}elseif(Auth::guard($guard)->check() && Auth::user()->role->id==2){
+    return redirect()->route('customer.dashboard');
+}else{
+    return $next($request);
+}
+--
+//update LoginController.php in Auth
+use Auth
+
+protected $redirectTo;
+
+public function __construct(){
+
+    if(Auth::check() && Auth::user()->role->id == 1){
+        $this->redirectTo = route('admin.dashboard');
+    }else{
+        $this->redirectTo = route('customer.dashboard');
+    }
+
+    //leave as is
+}
+
+//update RegisterController.php in Auth
+use Auth
+
+protected $redirectTo;
+
+public function __construct(){
+
+    if(Auth::check() && Auth::user()->role->id == 1){
+        $this->redirectTo = route('admin.dashboard');
+    }else{
+        $this->redirectTo = route('customer.dashboard');
+    }
+
+    //leave as is
+    $this->middleware('guest')->except('logout');
+}
+
+
+
+------*****-----END-----*****---

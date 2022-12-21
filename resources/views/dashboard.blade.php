@@ -16,6 +16,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
+                                <th scope="col">Move-In Date</th>
                                 <th scope="col">Address Line 1</th>
                                 <th scope="col">Address Line 2</th>
                                 <th scope="col">City</th>
@@ -29,6 +30,7 @@
                             @foreach($service_requests as $sr)
                             <tr>
                                 <td>{{ $sr->id }}</td>
+                                <td>{{ $sr->move_in_date }}</td>
                                 <td>{{ $sr->address_1 }}</td>
                                 <td>{{ $sr->address_2 }}</td>
                                 <td>{{ $sr->city }}</td>

@@ -13,11 +13,14 @@
         @csrf
 
         <div>
+            <x-input-label for="move_in_date" :value="__('Move-in Date')" />
+            <x-text-input id="move_in_date" name="move_in_date" type="date" class="mt-1 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('move_in_date')" />
+        </div>
+        <div>
             <x-input-label for="address_1" :value="__('Address Line 1')" />
             <x-text-input id="address_1" name="address_1" type="text" class="mt-1 block w-full" />
-            <!--<x-input-error class="mt-2" :messages="$errors->get('name')" />-->
-
-
+            <x-input-error class="mt-2" :messages="$errors->get('address_1')" />
         </div>
         <div>
             <x-input-label for="address_2" :value="__('Address Line 2')" />
@@ -27,22 +30,22 @@
         <div>
             <x-input-label for="city" :value="__('City')" />
             <x-text-input id="city" name="city" type="text" class="mt-1 block w-full" />
-            <!--<x-input-error class="mt-2" :messages="$errors->get('name')" />-->
+            <x-input-error class="mt-2" :messages="$errors->get('city')" />
         </div>
         <div>
             <x-input-label for="state" :value="__('State')" />
             <x-text-input id="state" name="state" type="text" class="mt-1 block w-full" />
-            <!--<x-input-error class="mt-2" :messages="$errors->get('name')" />-->
+            <x-input-error class="mt-2" :messages="$errors->get('state')" />
         </div>
         <div>
             <x-input-label for="country" :value="__('Country')" />
             <x-text-input id="country" name="country" type="text" class="mt-1 block w-full" />
-            <!--<x-input-error class="mt-2" :messages="$errors->get('name')" />-->
+            <x-input-error class="mt-2" :messages="$errors->get('country')" />
         </div>
         <div>
             <x-input-label for="zipcode" :value="__('ZipCode')" />
             <x-text-input id="zipcode" name="zipcode" type="text" class="mt-1 block w-full" />
-            <!--<x-input-error class="mt-2" :messages="$errors->get('name')" />-->
+            <x-input-error class="mt-2" :messages="$errors->get('zipcode')" />
         </div>
 
         <div class="flex items-center gap-4">
