@@ -42,9 +42,9 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('newservice.all')" :active="request()->routeIs('newservice.all')">
-                        {{ __('Request New Service') }}
-                    </x-nav-link>
+{{--                    <x-nav-link :href="route('newservice.all')" :active="request()->routeIs('newservice.all')">--}}
+{{--                        {{ __('Request New Service') }}--}}
+{{--                    </x-nav-link>--}}
                     @endcustomer
                 </div>
             </div>
