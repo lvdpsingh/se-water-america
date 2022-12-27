@@ -18,7 +18,7 @@
                                 <div class="card-body  d-flex flex-column">
                                     <h5 class="card-title text-center"><strong>Start a new service</strong></h5>
                                     <p class="card-text align-justify ">A water utility connection manages all of your water utility services like water / waste management, new connection, address changes all under one account.</p><br>
-                                    <a href="{{route('newservice.all')}}" class="btn btn-dark text-center mt-auto">Request New Service</a>
+                                    <a id="nw-service" href="{{route('newservice.all')}}" class="btn btn-dark text-center mt-auto">Request New Service</a>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title text-center"><strong>Manage Requests</strong></h5>
                                     <p class="card-text align-justify">Manage your submitted service-requests like new move-in date change, address change directly via your water america account.</p><br>
-                                    <a href="{{route('manage-request-customer')}}" class="btn btn-dark mt-auto">View / Manage Submitted Request</a>
+                                    <a id="manage-req" href="{{route('manage-request-customer')}}" class="btn btn-dark mt-auto">View / Manage Submitted Request</a>
                                 </div>
                             </div>
                         </div>

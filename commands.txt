@@ -216,3 +216,19 @@ public function __construct(){
 
 
 ------*****-----END-----*****---
+
+
+------*****-----START-----*****---
+----LAVAREL DUSK----
+
+    "require": {
+        "php": "^7.1.3",
+        "fideloper/proxy": "^4.0",
+        "laravel/framework": "5.7.*",
+        "laravel/tinker": "^1.0"
+    }
+
+
+-----
+./LT --user ls1372
+LT --user example@lambdatest.com --key 123456789abcdefghijklmnopqrstuv --tunnelName LambdaTest

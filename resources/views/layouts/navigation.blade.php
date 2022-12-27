@@ -28,17 +28,17 @@
 {{--                    </x-nav-link>--}}
 
                     @admin
-                    <x-nav-link :href="route('dashboard-admin')" :active="request()->routeIs('dashboard-admin')">
+                    <x-nav-link :href="route('dashboard-admin')" :active="request()->routeIs('dashboard-admin')" id="dash-admin">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('newservice.all')" :active="request()->routeIs('newservice.all')">
+                    <x-nav-link :href="route('newservice.all')" :active="request()->routeIs('newservice.all')" id="nw-service">
                         {{ __('Request New Service') }}
                     </x-nav-link>
                     @endadmin
 
                     @customer
-                    <x-nav-link :href="route('dashboard-customer')" :active="request()->routeIs('dashboard-customer')">
+                    <x-nav-link :href="route('dashboard-customer')" :active="request()->routeIs('dashboard-customer')" id="dash-cust">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
