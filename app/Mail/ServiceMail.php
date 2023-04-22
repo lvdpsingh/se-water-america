@@ -44,7 +44,7 @@ class ServiceMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.new-service-request-mail',
+            view: 'emails.new-service-request-mail'
         );
     }
 

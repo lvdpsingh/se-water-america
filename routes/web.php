@@ -45,6 +45,12 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function (){
 
 Route::prefix('customer')->middleware(['auth','customer'])->group(function (){
     Route::get('dashboard-customer','App\Http\Controllers\Customer\DashboardController@index')->name('dashboard-customer');
+    Route::get('manage-request-customer','App\Http\Controllers\Customer\DashboardController@manageServiceRequest')->name('manage-request-customer');
+    Route::get('/service/edit/{id}','App\Http\Controllers\Customer\DashboardController@editServiceRequest')->name('service-edit-customer');
+    Route::post('/service/update/{id}','App\Http\Controllers\Customer\DashboardController@updateServiceRequest')->name('service-update-customer');
+    Route::get('/service/delete/{id}','App\Http\Controllers\Customer\DashboardController@deleteServiceRequest')->name('service-delete-customer');
+
+    Route::get('/validate-address/{id}','App\Http\Controllers\Customer\DashboardController@validateAddress')->name('validate-address');
 });
 
 require __DIR__.'/auth.php';
