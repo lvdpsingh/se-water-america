@@ -22,7 +22,6 @@ brew services restart mysql
 brew remove node
 --
 brew uninstall --force node
---
 rm /usr/local/bin/composer
 brew cleanup
 brew doctor
@@ -232,3 +231,35 @@ public function __construct(){
 -----
 ./LT --user ls1372
 LT --user example@lambdatest.com --key 123456789abcdefghijklmnopqrstuv --tunnelName LambdaTest
+
+
+----
+*******DEPLOYING TO AWS********
+
+chmod 400 se-water-america.pem
+ssh -i "se-water-america.pem" ec2-user@ec2-52-4-183-45.compute-1.amazonaws.com
+
+cd /var/www/html
+
+//create .env file
+sudo touch .env
+sudo nano .env
+
+//ngnix settings
+cd /etc/nginx
+ls
+cd conf.d
+cd elasticbeanstalk
+sudo touch laravel.conf
+ls
+sudo nano laravel.conf
+
+//put the code
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+
+//restart nginx
+sudo systemctl restart nginx
+
+
